@@ -1,0 +1,146 @@
+/* hallmark: v2.0.0 | genre: modern-minimal | theme: editorial-slate */
+
+:root {
+  /* Typography Tokens */
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+
+  /* Sizing & Spacing Tokens */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+
+  /* Radii Tokens */
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-full: 9999px;
+
+  /* Elevation Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.03);
+  --shadow-modal: 0 20px 25px -5px rgba(0, 0, 0, 0.12), 0 8px 10px -6px rgba(0, 0, 0, 0.08);
+
+  /* Light Theme Color Tokens */
+  --color-canvas: #fbfbfa;
+  --color-surface: #ffffff;
+  --color-surface-hover: #f7f6f4;
+  --color-surface-subtle: #f2f1ee;
+  
+  --color-text-main: #1c1917;
+  --color-text-muted: #57534e;
+  --color-text-faint: #78716c;
+  --color-text-inverted: #ffffff;
+
+  --color-border-subtle: #e7e5e4;
+  --color-border-strong: #d6d3d1;
+
+  --color-primary: #1c1917;
+  --color-primary-hover: #292524;
+  --color-primary-active: #0c0a09;
+  --color-primary-text: #ffffff;
+
+  --color-secondary-bg: #f5f5f4;
+  --color-secondary-text: #1c1917;
+  --color-secondary-hover: #e7e5e4;
+
+  --color-danger: #b91c1c;
+  --color-danger-hover: #991b1b;
+  --color-danger-bg: #fef2f2;
+  --color-danger-border: #fecaca;
+  --color-danger-text: #991b1b;
+
+  --color-focus-ring: rgba(28, 25, 23, 0.2);
+  --color-backdrop: rgba(12, 10, 9, 0.45);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Dark Theme Color Tokens */
+    --color-canvas: #121212;
+    --color-surface: #1c1c1e;
+    --color-surface-hover: #262629;
+    --color-surface-subtle: #202022;
+
+    --color-text-main: #f4f4f5;
+    --color-text-muted: #a1a1aa;
+    --color-text-faint: #71717a;
+    --color-text-inverted: #121212;
+
+    --color-border-subtle: #2e2e32;
+    --color-border-strong: #3f3f46;
+
+    --color-primary: #f4f4f5;
+    --color-primary-hover: #e4e4e7;
+    --color-primary-active: #d4d4d8;
+    --color-primary-text: #121212;
+
+    --color-secondary-bg: #27272a;
+    --color-secondary-text: #f4f4f5;
+    --color-secondary-hover: #3f3f46;
+
+    --color-danger: #ef4444;
+    --color-danger-hover: #f87171;
+    --color-danger-bg: rgba(239, 68, 68, 0.12);
+    --color-danger-border: rgba(239, 68, 68, 0.3);
+    --color-danger-text: #fca5a5;
+
+    --color-focus-ring: rgba(244, 244, 245, 0.3);
+    --color-backdrop: rgba(0, 0, 0, 0.7);
+  }
+}
+
+/* Base Reset & Hallmark Floor Constraints */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  overflow-x: clip;
+  min-height: 100%;
+  background-color: var(--color-canvas);
+  color: var(--color-text-main);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Universal Focus Visible */
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* Reduced Motion Fallback */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
