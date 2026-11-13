@@ -1,4 +1,4 @@
-const BASE_URL = import.meta.env.VITE_API_URL || '/api'; // Default to '/api' if not set in environment variables
+const BASE_URL = import.meta.env.VITE_API_URL || ''; // Default to '/api' if not set in environment variables
 
 export async function apiRequest(endpoint, options = {}) {
   const token = localStorage.getItem('token');
