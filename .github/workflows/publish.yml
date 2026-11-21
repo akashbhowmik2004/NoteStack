@@ -38,24 +38,8 @@ jobs:
           username: ubuntu
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
-            # Pull latest images
-            docker pull ${{ secrets.DOCKERHUB_USERNAME }}/notestack:backend
-            docker pull ${{ secrets.DOCKERHUB_USERNAME }}/notestack:frontend
-
-            # Stop and remove old containers
-            docker stop notestack-backend || true
-            docker rm notestack-backend || true
-            docker stop notestack-frontend || true
-            docker rm notestack-frontend || true
-
-            # Start backend
-            docker run -d --name notestack-backend \
-              -p 5000:5000 \
-              --env-file /home/ubuntu/NoteStack/backend/.env \
-              ${{ secrets.DOCKERHUB_USERNAME }}/notestack:backend
-
-            # Start frontend
-            docker run -d --name notestack-frontend \
-              -p 80:80 \
-              --env-file /home/ubuntu/NoteStack/frontend/.env \
-              ${{ secrets.DOCKERHUB_USERNAME }}/notestack:frontend
+            script: |
+            cd /home/ubuntu/NoteStack
+            git pull
+            docker compose pull
+            docker compose up -d
