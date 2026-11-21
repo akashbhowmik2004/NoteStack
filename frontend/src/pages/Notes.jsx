@@ -122,7 +122,7 @@ export const Notes = () => {
       {/* Simple Header */}
       <header className="notes-header">
         <div className="header-content">
-          <h1>NoteStack</h1>
+          <h1>NoteStack - deployed via CI/CD</h1>
           <div className="user-section">
             <span className="user-email">{user?.email}</span>
             <button onClick={logout} className="btn btn-secondary btn-sm">
