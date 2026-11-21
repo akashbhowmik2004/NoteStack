@@ -56,6 +56,6 @@ jobs:
 
             # Start frontend
             docker run -d --name notestack-frontend \
-              -p 8080:80 \
+              -p 80:80 \
               --env-file /home/ubuntu/NoteStack/frontend/.env \
               ${{ secrets.DOCKERHUB_USERNAME }}/notestack:frontend
