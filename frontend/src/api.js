@@ -1,5 +1,26 @@
 const BASE_URL = import.meta.env.VITE_API_URL || ''; // Default to '/api' if not set in environment variables
 
+export function getTokenExpiration(token) {
+  if (!token) return null;
+
+  try {
+    const payload = token.split('.')[1];
+    if (!payload) return null;
+
+    const base64 = payload.replace(/-/g, '+').replace(/_/g, '/');
+    const padded = base64.padEnd(base64.length + ((4 - (base64.length % 4)) % 4), '=');
+    const decoded = JSON.parse(atob(padded));
+    return typeof decoded.exp === 'number' ? decoded.exp * 1000 : null;
+  } catch {
+    return null;
+  }
+}
+
+export function isTokenExpired(token) {
+  const expiration = getTokenExpiration(token);
+  return expiration === null || Date.now() >= expiration;
+}
+
 export async function apiRequest(endpoint, options = {}) {
   const token = localStorage.getItem('token');
   const headers = {
@@ -31,6 +52,13 @@ export async function apiRequest(endpoint, options = {}) {
     const error = new Error(errorMsg);
     error.status = response.status;
     error.data = data;
+
+    if (response.status === 401 && token) {
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
+      window.location.replace('/login');
+    }
+
     throw error;
   }
 

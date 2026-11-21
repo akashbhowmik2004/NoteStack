@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { api } from '../api';
 
@@ -34,7 +34,10 @@ export const Notes = () => {
   };
 
   useEffect(() => {
-    loadNotes();
+    const timer = window.setTimeout(() => {
+      void loadNotes();
+    }, 0);
+    return () => window.clearTimeout(timer);
   }, []);
 
   // Handle note creation
