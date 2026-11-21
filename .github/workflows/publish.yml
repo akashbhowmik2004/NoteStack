@@ -38,7 +38,6 @@ jobs:
           username: ubuntu
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
-            script: |
             cd /home/ubuntu/NoteStack
             git pull
             docker compose pull
